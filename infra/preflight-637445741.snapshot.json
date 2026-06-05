@@ -1,0 +1,291 @@
+{
+  "predictedResources": [
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825",
+      "type": "Microsoft.Resources/resourceGroups",
+      "name": "rg-agents-playground-6825",
+      "apiVersion": "2024-03-01",
+      "location": "uksouth",
+      "tags": {
+        "azd-env-name": "agents-playground-6825",
+        "app-name": "ai-foundry-agent"
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco",
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "name": "id-web-a2yepka4oavco",
+      "apiVersion": "2024-11-30",
+      "location": "uksouth",
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "isolationScope": "Regional"
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.OperationalInsights/workspaces/law-a2yepka4oavco",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "name": "law-a2yepka4oavco",
+      "apiVersion": "2023-09-01",
+      "location": "uksouth",
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "sku": {
+          "name": "PerGB2018"
+        },
+        "retentionInDays": 30
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-a2yepka4oavco",
+      "type": "Microsoft.Insights/components",
+      "name": "appi-a2yepka4oavco",
+      "apiVersion": "2020-02-02",
+      "location": "uksouth",
+      "kind": "web",
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "Application_Type": "web",
+        "WorkspaceResourceId": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.OperationalInsights/workspaces/law-a2yepka4oavco"
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-fe-a2yepka4oavco",
+      "type": "Microsoft.Insights/components",
+      "name": "appi-fe-a2yepka4oavco",
+      "apiVersion": "2020-02-02",
+      "location": "uksouth",
+      "kind": "web",
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "Application_Type": "web",
+        "WorkspaceResourceId": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.OperationalInsights/workspaces/law-a2yepka4oavco"
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco",
+      "type": "Microsoft.ContainerRegistry/registries",
+      "name": "cra2yepka4oavco",
+      "apiVersion": "2023-07-01",
+      "location": "uksouth",
+      "sku": {
+        "name": "Basic"
+      },
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "adminUserEnabled": false,
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "id": "[extensionResourceId('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco', 'Microsoft.Authorization/roleAssignments', guid('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco', reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').principalId, '7f951dda-4ed3-4680-a7ca-43fe172d538d'))]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "condition": "[not(empty(reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').principalId))]",
+      "name": "[guid('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco', reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').principalId, '7f951dda-4ed3-4680-a7ca-43fe172d538d')]",
+      "apiVersion": "2022-04-01",
+      "properties": {
+        "roleDefinitionId": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d",
+        "principalId": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.App/managedEnvironments/cae-a2yepka4oavco",
+      "type": "Microsoft.App/managedEnvironments",
+      "name": "cae-a2yepka4oavco",
+      "apiVersion": "2024-03-01",
+      "location": "uksouth",
+      "tags": {
+        "azd-env-name": "a2yepka4oavco",
+        "app-name": "ai-foundry-agent"
+      },
+      "properties": {
+        "appLogsConfiguration": {
+          "destination": "log-analytics",
+          "logAnalyticsConfiguration": {
+            "customerId": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.OperationalInsights/workspaces/law-a2yepka4oavco', '2023-09-01').customerId]",
+            "sharedKey": "[listKeys('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.OperationalInsights/workspaces/law-a2yepka4oavco', '2023-09-01').primarySharedKey]"
+          }
+        }
+      }
+    },
+    {
+      "id": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.App/containerApps/ca-web-a2yepka4oavco",
+      "type": "Microsoft.App/containerApps",
+      "name": "ca-web-a2yepka4oavco",
+      "apiVersion": "2024-03-01",
+      "location": "uksouth",
+      "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+          "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco": {}
+        }
+      },
+      "tags": {
+        "azd-env-name": "agents-playground-6825",
+        "app-name": "ai-foundry-agent",
+        "azd-service-name": "web"
+      },
+      "properties": {
+        "managedEnvironmentId": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.App/managedEnvironments/cae-a2yepka4oavco",
+        "configuration": {
+          "activeRevisionsMode": "Single",
+          "ingress": {
+            "external": true,
+            "targetPort": 8080,
+            "transport": "auto",
+            "allowInsecure": false
+          },
+          "registries": [
+            {
+              "server": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco', '2023-07-01').loginServer]",
+              "identity": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco"
+            }
+          ]
+        },
+        "template": {
+          "containers": [
+            {
+              "name": "ca-web-a2yepka4oavco",
+              "image": "mcr.microsoft.com/k8se/quickstart:latest",
+              "env": [
+                {
+                  "name": "ASPNETCORE_ENVIRONMENT",
+                  "value": "Production"
+                },
+                {
+                  "name": "ASPNETCORE_URLS",
+                  "value": "http://+:8080"
+                },
+                {
+                  "name": "ENTRA_SPA_CLIENT_ID",
+                  "value": "[reference('app').appId]"
+                },
+                {
+                  "name": "ENTRA_TENANT_ID",
+                  "value": "d9fec63b-47ed-4fa5-a265-1d3bb934a78b"
+                },
+                {
+                  "name": "AI_AGENT_ENDPOINT",
+                  "value": "https://nhsuk-ai-ap2-uks-resource.services.ai.azure.com/api/projects/nhsuk-ai-ap2-uks"
+                },
+                {
+                  "name": "AI_AGENT_ID",
+                  "value": "NHSUK-Agent"
+                },
+                {
+                  "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+                  "value": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-a2yepka4oavco', '2020-02-02').ConnectionString]"
+                },
+                {
+                  "name": "APPLICATIONINSIGHTS_FRONTEND_CONNECTION_STRING",
+                  "value": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-fe-a2yepka4oavco', '2020-02-02').ConnectionString]"
+                },
+                {
+                  "name": "MANAGED_IDENTITY_CLIENT_ID",
+                  "value": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').clientId]"
+                }
+              ],
+              "resources": {
+                "cpu": 0.5,
+                "memory": "1Gi"
+              },
+              "probes": [
+                {
+                  "type": "Liveness",
+                  "httpGet": {
+                    "path": "/api/health",
+                    "port": 8080
+                  },
+                  "periodSeconds": 30,
+                  "failureThreshold": 3
+                },
+                {
+                  "type": "Startup",
+                  "httpGet": {
+                    "path": "/api/health",
+                    "port": 8080
+                  },
+                  "periodSeconds": 10,
+                  "failureThreshold": 30,
+                  "initialDelaySeconds": 5
+                }
+              ]
+            }
+          ],
+          "scale": {
+            "minReplicas": 0,
+            "maxReplicas": 3
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "uniqueName": "ai-foundry-agent-agents-playground-6825",
+        "displayName": "ai-foundry-agent-agents-playground-6825",
+        "signInAudience": "AzureADMyOrg",
+        "serviceManagementReference": null,
+        "spa": {
+          "redirectUris": [
+            "http://localhost:5173",
+            "http://localhost:8080"
+          ]
+        },
+        "api": {
+          "knownClientApplications": [],
+          "oauth2PermissionScopes": [
+            {
+              "adminConsentDescription": "Allows the app to read and write chat messages",
+              "adminConsentDisplayName": "Read and write chat messages",
+              "id": "20db449b-7551-59ca-a630-45de3071fe2f",
+              "isEnabled": true,
+              "type": "User",
+              "userConsentDescription": "Allows the app to read and write your chat messages",
+              "userConsentDisplayName": "Read and write your chat messages",
+              "value": "Chat.ReadWrite"
+            }
+          ]
+        }
+      },
+      "type": "Microsoft.Graph/applications@v1.0"
+    },
+    {
+      "properties": {
+        "appId": "[reference('app').appId]"
+      },
+      "type": "Microsoft.Graph/servicePrincipals@v1.0"
+    }
+  ],
+  "diagnostics": [],
+  "outputs": {
+    "AZURE_CONTAINER_APP_NAME": "ca-web-a2yepka4oavco",
+    "ENTRA_BACKEND_APP_OBJECT_ID": "",
+    "WEB_IDENTITY_PRINCIPAL_ID": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id-web-a2yepka4oavco', '2024-11-30').principalId]",
+    "APPLICATIONINSIGHTS_FRONTEND_CONNECTION_STRING": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-fe-a2yepka4oavco', '2020-02-02').ConnectionString]",
+    "AZURE_CONTAINER_REGISTRY_NAME": "cra2yepka4oavco",
+    "ENTRA_APP_OBJECT_ID": "[reference('app').id]",
+    "AZURE_CONTAINER_APPS_ENVIRONMENT_ID": "/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.App/managedEnvironments/cae-a2yepka4oavco",
+    "ENTRA_SPA_CLIENT_ID": "[reference('app').appId]",
+    "AZURE_RESOURCE_GROUP_NAME": "rg-agents-playground-6825",
+    "WEB_ENDPOINT": "[format('https://{0}', reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.App/containerApps/ca-web-a2yepka4oavco', '2024-03-01').configuration.ingress.fqdn)]",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.Insights/components/appi-a2yepka4oavco', '2020-02-02').ConnectionString]",
+    "AZURE_CONTAINER_REGISTRY_ENDPOINT": "[reference('/subscriptions/c6bc37a4-a5cb-46e8-9a43-d4e8484dd51b/resourceGroups/rg-agents-playground-6825/providers/Microsoft.ContainerRegistry/registries/cra2yepka4oavco', '2023-07-01').loginServer]",
+    "ENTRA_BACKEND_CLIENT_ID": ""
+  }
+}

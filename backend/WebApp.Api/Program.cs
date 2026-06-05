@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
 using WebApp.Api.Models;
 using WebApp.Api.Services;
-using System.Security.Claims;
 
 // Load .env file for local development BEFORE building the configuration
 // In production (Docker), Container Apps injects environment variables directly
@@ -24,12 +21,6 @@ if (File.Exists(envFilePath))
 }
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Enable PII logging for debugging auth issues (ONLY IN DEVELOPMENT)
-if (builder.Environment.IsDevelopment())
-{
-    Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
-}
 
 // Add ServiceDefaults (telemetry, health checks)
 builder.AddServiceDefaults();
@@ -93,41 +84,6 @@ if (!string.IsNullOrEmpty(tenantId))
     builder.Configuration["AzureAd:TenantId"] = tenantId;
 }
 
-const string RequiredScope = "Chat.ReadWrite";
-const string ScopePolicyName = "RequireChatScope";
-
-// Add Microsoft Identity Web authentication
-// Validates JWT bearer tokens issued for the SPA's delegated scope
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(options =>
-    {
-        builder.Configuration.Bind("AzureAd", options);
-        var configuredClientId = builder.Configuration["AzureAd:ClientId"];
-        var backendClientId = builder.Configuration["ENTRA_BACKEND_CLIENT_ID"];
-
-        // When OBO is enabled, tokens are scoped to the backend API app
-        var audiences = new List<string> { configuredClientId!, $"api://{configuredClientId}" };
-        if (!string.IsNullOrEmpty(backendClientId))
-        {
-            audiences.Add(backendClientId);
-            audiences.Add($"api://{backendClientId}");
-        }
-        options.TokenValidationParameters.ValidAudiences = audiences;
-
-        options.TokenValidationParameters.NameClaimType = ClaimTypes.Name;
-        options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
-    }, options => builder.Configuration.Bind("AzureAd", options));
-
-builder.Services.AddAuthorization(options =>
-{
-    // Use Microsoft.Identity.Web's built-in scope validation
-    options.AddPolicy(ScopePolicyName, policy =>
-    {
-        policy.RequireAuthenticatedUser();
-        policy.RequireScope(RequiredScope);
-    });
-});
-
 // Register Foundry Agent Service (v2 Agents API)
 // Uses Azure.AI.Projects SDK which works with v2 Agents API (/agents/ endpoint with human-readable IDs).
 builder.Services.AddHttpClient();
@@ -155,10 +111,6 @@ app.UseCors("AllowFrontend");
 
 // Note: HTTPS redirection not needed - Azure Container Apps handles SSL termination at ingress
 // The container receives HTTP traffic on port 8080
-
-// Add authentication and authorization middleware
-app.UseAuthentication();
-app.UseAuthorization();
 
 // Unauthenticated health endpoint for container probes
 app.MapGet("/api/health", () => Results.Ok(new { status = "healthy" }))
@@ -254,7 +206,6 @@ app.MapPost("/api/chat/stream", async (
             cancellationToken);
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("StreamChatMessage");
 
 static async Task WriteConversationIdEvent(HttpResponse response, string conversationId, CancellationToken ct)
@@ -372,7 +323,6 @@ app.MapGet("/api/agent", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("GetAgentMetadata");
 
 // Get agent info (for debugging)
@@ -405,7 +355,6 @@ app.MapGet("/api/agent/info", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("GetAgentInfo");
 
 // List conversations
@@ -438,7 +387,6 @@ app.MapGet("/api/conversations", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("ListConversations");
 
 // Get conversation messages
@@ -464,7 +412,6 @@ app.MapGet("/api/conversations/{conversationId}/messages", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("GetConversationMessages");
 
 // Delete conversation
@@ -498,7 +445,6 @@ app.MapDelete("/api/conversations/{conversationId}", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("DeleteConversation");
 
 // File download endpoint for code interpreter outputs
@@ -537,7 +483,6 @@ app.MapGet("/api/files/{fileId}", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("DownloadFile");
 
 // Uploaded-files cleanup endpoints — inspect & delete image files previously uploaded by
@@ -565,7 +510,6 @@ app.MapGet("/api/files/uploaded", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("ListUploadedFiles");
 
 app.MapPost("/api/files/cleanup", async (
@@ -589,7 +533,6 @@ app.MapPost("/api/files/cleanup", async (
         );
     }
 })
-.RequireAuthorization(ScopePolicyName)
 .WithName("CleanupUploadedFiles");
 
 // Fallback route for SPA - serve index.html for any non-API routes

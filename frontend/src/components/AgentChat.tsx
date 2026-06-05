@@ -3,7 +3,6 @@ import { ChatInterface } from './ChatInterface';
 import { ConversationSidebar } from './ConversationSidebar';
 import { SettingsPanel } from './core/SettingsPanel';
 import { useAppState } from '../hooks/useAppState';
-import { useAuth } from '../hooks/useAuth';
 import { ChatService } from '../services/chatService';
 import { useAppContext } from '../contexts/AppContext';
 import { exportAsMarkdown, downloadMarkdown } from '../utils/exportConversation';
@@ -22,7 +21,7 @@ interface AgentChatProps {
 export const AgentChat: React.FC<AgentChatProps> = ({ agentName, agentDescription, agentLogo, starterPrompts }) => {
   const { chat, state } = useAppState();
   const { dispatch } = useAppContext();
-  const { getAccessToken } = useAuth();
+  const getAccessToken = useCallback(async () => null, []);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Create service instances

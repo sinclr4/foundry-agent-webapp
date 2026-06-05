@@ -5,3 +5,15 @@
   height: 100vh;
   overflow: hidden;
 }
+
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.app-loading-text {
+  margin: 0;
+}

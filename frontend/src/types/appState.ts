@@ -104,7 +104,7 @@ export type AppAction =
  */
 export const initialAppState: AppState = {
   auth: {
-    status: 'initializing',
+    status: 'authenticated',
     user: null,
     error: null,
   },

@@ -165,9 +165,10 @@ public class AgentFrameworkService : IDisposable
             var userToken = ExtractBearerToken();
             if (string.IsNullOrEmpty(userToken))
             {
-                throw new InvalidOperationException(
-                    "OBO mode requires a bearer token but none was found in the request. " +
-                    "Ensure the frontend is sending an Authorization header with a valid token.");
+                _logger.LogWarning(
+                    "OBO mode is configured but no bearer token was found. Falling back to managed identity for this request.");
+                _projectClient = new AIProjectClient(new Uri(_agentEndpoint), _fallbackCredential);
+                return _projectClient;
             }
 
             var oboCredential = CreateOboCredential(userToken);
